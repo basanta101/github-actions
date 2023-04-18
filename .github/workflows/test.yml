@@ -1,0 +1,24 @@
+#name of the workflow
+name: test
+#events(trigger workflow)
+on: push
+jobs: 
+  test: #name of the job
+    runs-on: ubuntu-latest # the env where the workflow will run
+    steps: 
+      - name: Get code
+        uses: actions/checkout@v3
+        with: 
+          fetch-depth: 0
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install package dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
+         
+
+
+  
